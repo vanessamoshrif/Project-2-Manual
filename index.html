@@ -2,669 +2,486 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Communicate with Confidence – Class Training Manual</title>
+  <title>Communicate with Confidence – Training Manual</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #f5f5f7;
+      --bg: #f7f7fb;
       --card: #ffffff;
-      --accent: #2c3e50;
-      --accent-soft: #ecf0f1;
-      --bad: #c0392b;
-      --bad-soft: #fdecea;
-      --good: #1e8449;
-      --good-soft: #e8f6f0;
+      --accent: #2b4c7e;
+      --accent-soft: #dde6f7;
+      --text-main: #222222;
+      --text-muted: #555555;
+      --border: #dddddd;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
+      margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
       background: var(--bg);
-      margin: 0;
-      padding: 1.5rem;
+      color: var(--text-main);
       line-height: 1.6;
-      color: #222;
     }
 
     header {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 2rem 1.25rem;
+    }
+
+    header .wrapper {
       max-width: 900px;
-      margin: 0 auto 1.5rem;
-      text-align: center;
+      margin: 0 auto;
     }
 
     header h1 {
-      margin-bottom: 0.25rem;
-      color: var(--accent);
-      font-size: 1.9rem;
+      margin: 0 0 0.5rem;
+      font-size: 2rem;
     }
 
     header p {
-      margin: 0.15rem 0;
-      font-size: 0.95rem;
-    }
-
-    nav {
-      max-width: 900px;
-      margin: 0 auto 1.5rem;
-      background: var(--card);
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    nav span {
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-right: 0.75rem;
-    }
-
-    nav a {
-      font-size: 0.9rem;
-      margin-right: 0.75rem;
-      text-decoration: none;
-      color: #333;
-      padding: 0.15rem 0.4rem;
-      border-radius: 999px;
-    }
-
-    nav a:hover {
-      background: var(--accent-soft);
-      color: var(--accent);
+      margin: 0.25rem 0;
     }
 
     main {
       max-width: 900px;
-      margin: 0 auto 2rem;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1.25rem;
     }
 
-    section {
+    .card {
       background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.25rem 1.4rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
 
     h2 {
       margin-top: 0;
       color: var(--accent);
-      font-size: 1.3rem;
     }
 
     h3 {
-      margin-bottom: 0.3rem;
-      margin-top: 0.9rem;
-      font-size: 1.05rem;
+      margin-top: 1.25rem;
+      color: #333333;
     }
 
-    p {
-      margin: 0.4rem 0;
-      font-size: 0.95rem;
-    }
-
-    ul {
-      margin: 0.3rem 0 0.5rem 1.1rem;
-      padding-left: 0.2rem;
-      font-size: 0.95rem;
-    }
-
-    li {
+    h4 {
+      margin-top: 0.75rem;
       margin-bottom: 0.25rem;
     }
 
-    .tip {
+    .tagline {
+      font-size: 0.95rem;
+      color: #f0f4ff;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .toc {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.5rem 0 0;
+      font-size: 0.95rem;
+    }
+
+    .toc li {
+      margin: 0.25rem 0;
+    }
+
+    .toc a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--accent-soft);
+    }
+
+    .toc a:hover {
+      border-bottom-style: solid;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+    }
+
+    .callout {
       border-left: 4px solid var(--accent);
       background: var(--accent-soft);
-      padding: 0.5rem 0.75rem;
-      margin: 0.6rem 0;
-      font-size: 0.9rem;
-    }
-
-    .scene-link {
-      font-size: 0.9rem;
-      font-style: italic;
-      margin-top: 0.15rem;
-    }
-
-    .bad-example,
-    .good-example {
-      padding: 0.6rem 0.75rem;
-      border-radius: 7px;
-      margin: 0.45rem 0;
-      font-size: 0.9rem;
-    }
-
-    .bad-example {
-      border-left: 4px solid var(--bad);
-      background: var(--bad-soft);
-    }
-
-    .good-example {
-      border-left: 4px solid var(--good);
-      background: var(--good-soft);
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0 1rem;
+      font-size: 0.95rem;
     }
 
     .checklist {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 0.75rem;
-      margin-top: 0.5rem;
+      list-style: none;
+      padding-left: 0;
     }
 
-    .checklist-card {
+    .checklist li::before {
+      content: "✔ ";
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .scene-label {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       background: var(--accent-soft);
-      border-radius: 8px;
-      padding: 0.75rem;
-      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
     }
 
-    .footer-note {
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 720px) {
+      .two-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    footer {
       max-width: 900px;
-      margin: 0 auto;
+      margin: 0 auto 2rem;
+      padding: 0 1.25rem;
       font-size: 0.85rem;
-      color: #555;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 1rem;
-      }
-
-      nav {
-        font-size: 0.85rem;
-      }
-
-      header h1 {
-        font-size: 1.6rem;
-      }
+      color: var(--text-muted);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Communicate with Confidence</h1>
-    <p><strong>Class Training Manual – Book 3, Chapter 3</strong></p>
-    <p>
-      This manual goes with our training video:
-      <em>“Communicate with Confidence – The Right Way at Work.”</em>
-    </p>
+    <div class="wrapper">
+      <h1>Communicate with Confidence – Training Manual</h1>
+      <p class="tagline">Supporting video: <strong>“The Power of Good Communication in Business – Inspired by Chapter 3”</strong></p>
+      <p class="meta">
+        Created for: <strong>[Class / Course Name]</strong><br />
+        Team: <strong>Josue • Mia • Yaretzi</strong><br />
+        Based on: <strong>Book 3, Chapter 3 – Communicate with Confidence</strong>
+      </p>
+    </div>
   </header>
 
-  <nav>
-    <span>Jump to:</span>
-    <a href="#overview">Overview</a>
-    <a href="#writing">Writing with Confidence</a>
-    <a href="#speaking">Speaking with Confidence</a>
-    <a href="#visuals">Visual Communication</a>
-    <a href="#listening">Listening Skills</a>
-    <a href="#word-choice">Word Choice</a>
-    <a href="#problem-solving">Problem-Solving</a>
-    <a href="#checklists">Quick Checklists</a>
-    <a href="#video-connection">Video Tie-In</a>
-  </nav>
+    <main>
+    <!-- Table of Contents -->
+    <section class="card" id="overview">
+      <h2>How to Use This Manual</h2>
+      <p>
+        This manual is designed to go with our training video about communication in business. 
+        It connects the <strong>scenes in the video</strong> with the <strong>key ideas from Chapter 3 – Communicate with Confidence</strong>.
+      </p>
 
-  <main>
-    <!-- OVERVIEW -->
-    <section id="overview">
-      <h2>Overview: Why Communication Matters</h2>
-      <p>
-        Business lives and breathes through communication. Good communicators
-        make good professionals, and confident communication helps you:
-      </p>
-      <ul>
-        <li>Look professional in emails, memos, and messages.</li>
-        <li>Lead meetings and presentations without losing your audience.</li>
-        <li>Use visuals that support your message instead of distracting from it.</li>
-        <li>Listen well so people feel heard and respected.</li>
-      </ul>
-      <p>
-        Our video shows “wrong way” vs. “better way” communication. This manual
-        explains the concepts behind those scenes and gives you practical tips
-        you can use at school, at work, and in internships.
-      </p>
-      <div class="tip">
-        <strong>Big idea:</strong> Communicating with confidence is not about
-        being perfect. It’s about being clear, respectful, and prepared.
+      <div class="callout">
+        <strong>Tip:</strong> Use this manual before, during, or after the video to review the concepts, prepare for class discussion, or study for exams.
       </div>
+
+      <h3>Table of Contents</h3>
+      <ul class="toc">
+        <li><a href="#big-ideas">1. Big Ideas from Chapter 3</a></li>
+        <li><a href="#scene-breakdown">2. Scene-by-Scene Breakdown</a></li>
+        <li><a href="#checklists">3. Quick Communication Checklists</a></li>
+        <li><a href="#reflection">4. Reflection & Discussion Questions</a></li>
+        <li><a href="#summary">5. Quick Summary of Chapter 3</a></li>
+      </ul>
     </section>
 
-    <!-- WRITING -->
-    <section id="writing">
-      <h2>1. Communicating in Writing</h2>
+    <!-- Big Ideas from Chapter 3 -->
+    <section class="card" id="big-ideas">
+      <h2>1. Big Ideas from Chapter 3 – Communicate with Confidence</h2>
       <p>
-        Writing skills matter in every job. Good writers tend to become leaders
-        because they can explain ideas clearly and professionally.
+        Chapter 3 reminds us that <strong>business lives and breathes through communication</strong>. 
+        Good communicators become trusted professionals and leaders because they can explain ideas clearly, solve problems, and work well with others.
       </p>
 
-      <h3>1.1 Think Before You Write</h3>
-      <p>Before you start typing, ask yourself:</p>
+      <h3>1.1 Communicating in Writing</h3>
+      <h4>Think before you write</h4>
       <ul>
-        <li><strong>What do I want to say?</strong> What is my main point?</li>
-        <li>
-          <strong>Should this be in writing?</strong> Writing is best when:
+        <li>What is my main message?</li>
+        <li>Does this need to be in writing, or is a quick conversation better?</li>
+        <li>Who is my audience, and what do they already know?</li>
+      </ul>
+
+      <h4>Think while you write</h4>
+      <ul>
+        <li><strong>Be clear:</strong> Use simple words and short sentences.</li>
+        <li><strong>Be considerate:</strong> Think about how your message will sound to the reader.</li>
+        <li><strong>Be correct:</strong> Check spelling, grammar, and facts.</li>
+        <li><strong>Be logical:</strong> Use transitions so ideas flow smoothly.</li>
+      </ul>
+
+      <h4>After you write, revise</h4>
+      <ul>
+        <li>Delete extra words that don’t add value.</li>
+        <li>Add any missing details (who, what, when, where, how).</li>
+        <li>Check tone – is it respectful and professional?</li>
+        <li>When it matters, have someone else read it.</li>
+      </ul>
+
+      <h3>1.2 Word Choice in Business</h3>
+      <p>Your word choice shows your professionalism. Chapter 3 suggests:</p>
+      <ul>
+        <li>Use clear, everyday language your audience can understand.</li>
+        <li>Avoid <strong>slang, filler words, ALL CAPS,</strong> and excessive emojis.</li>
+        <li>Use jargon or technical terms only when the audience knows them.</li>
+        <li>Be careful with humor or “jokes” in writing – they don’t always translate well.</li>
+      </ul>
+
+      <h3>1.3 Speaking with Confidence</h3>
+      <ul>
+        <li><strong>Prepare:</strong> Know your topic and organize your key points.</li>
+        <li><strong>Audience first:</strong> What do they need from you?</li>
+        <li><strong>Use the simple formula:</strong>
           <ul>
-            <li>You need a permanent record.</li>
-            <li>You’re sending it to many people.</li>
-            <li>The information is detailed or complicated.</li>
+            <li>Tell them what you’ll tell them.</li>
+            <li>Tell them.</li>
+            <li>Tell them what you told them.</li>
           </ul>
         </li>
-        <li>
-          A quick conversation is better when it’s sensitive, simple, or when
-          you’re not clear yet on what you should say.
-        </li>
+        <li>Keep it short and focused—people stop listening after 15–20 minutes.</li>
+        <li>Make eye contact, speak slowly, and pause instead of saying “um.”</li>
       </ul>
 
-      <h3>1.2 Think While You Write</h3>
+      <h3>1.4 Visual Communication</h3>
       <ul>
-        <li><strong>Be clear.</strong> Your reader should not have to guess.</li>
-        <li><strong>Be considerate.</strong> Respect the reader’s time and feelings.</li>
-        <li>
-          <strong>Be correct.</strong> Use spell-check and reread for grammar and
-          facts.
-        </li>
-        <li>
-          <strong>Be logical.</strong> Use transitions so your ideas flow from
-          one to the next.
-        </li>
-        <li>
-          <strong>Keep it simple.</strong> Short, simple words and short sentences
-          are easiest to understand.
-        </li>
+        <li>Use visuals (slides, charts, graphs) to <strong>support</strong> your message, not distract from it.</li>
+        <li>Limit text on slides – focus on key points.</li>
+        <li>Don’t talk while people are busy reading a dense slide.</li>
+        <li>Only use visuals that have a clear purpose.</li>
       </ul>
-
-      <h3>1.3 After You Write: Revise</h3>
-      <ul>
-        <li>Remove extra words and off-topic details.</li>
-        <li>Add missing details your reader needs.</li>
-        <li>Check that your tone is professional and positive.</li>
-        <li>Fix spelling, grammar, and factual errors.</li>
-        <li>
-          For important messages, ask someone else to quickly read it if
-          possible.
-        </li>
-      </ul>
-
-      <h3>1.4 Email Basics (Scene 1 – “The Confusing Email”)</h3>
-      <p>
-        In the video, “Jamie” sends a messy email and “Alex” is confused. That
-        scene shows what happens when we skip the steps above.
-      </p>
-
-      <div class="bad-example">
-        <strong>Bad example email:</strong><br />
-        Subject: Need This Now!!!<br />
-        “Hey can u fix this thing from last week? Idk the number but it’s
-        important.”
-      </div>
-
-      <div class="good-example">
-        <strong>Better example email:</strong><br />
-        Subject: Follow-Up on Expense Report – Action by Friday<br />
-        “Hi Alex, could you please review the expense report from last week
-        (invoice #458)? I just need your sign-off by Friday. Thank you!”
-      </div>
-
-      <p class="scene-link">
-        How it connects to the chapter: clear subject line, specific details,
-        polite tone, and a clear deadline.
-      </p>
-
-      <div class="tip">
-        <strong>Quick rule for emails:</strong> Clear subject line + specific
-        request + deadline + polite tone.
-      </div>
     </section>
 
-    <!-- SPEAKING -->
-    <section id="speaking">
-      <h2>2. Speaking with Confidence</h2>
+    <!-- Scene-by-Scene -->
+    <section class="card" id="scene-breakdown">
+      <h2>2. Scene-by-Scene Breakdown (How the Video Connects to Chapter 3)</h2>
+
+      <h3>Intro – Why Communication Matters</h3>
       <p>
-        To speak confidently, preparation is the key. You are the “expert” in
-        that moment, and the audience wants you to succeed.
+        In the intro, Josue, Mia, and Yaretzi explain that many workplace problems come 
+        from <strong>bad communication, not bad ideas</strong>. This matches Chapter 3’s main point:
+        improving how we speak, write, and present will improve our careers and our teams.
       </p>
 
-      <h3>2.1 Do Your Homework</h3>
+      <h3>Scene 1 – Poor Communication at Work (Unclear Email & Instructions)</h3>
+      <span class="scene-label">Problem Example</span>
+      <p>
+        In this scene, Yaretzi gives Mia a vague instruction (“Make sure everything’s ready”) and 
+        sent an email with a subject line like “Important,” but no details. Mia doesn’t know:
+      </p>
       <ul>
-        <li>
-          Learn about your audience: What do they already know? What might be
-          confusing or new to them?
-        </li>
-        <li>
-          Gather your data: facts, examples, and stories to support your main
-          points.
-        </li>
+        <li>Which presentation?</li>
+        <li>What “everything” includes?</li>
+        <li>Any deadlines or expectations?</li>
       </ul>
 
-      <h3>2.2 A Simple Formula for a Speech</h3>
-      <p>The text gives a clear formula:</p>
-      <ul>
-        <li><strong>Step 1:</strong> Tell them what you’ll tell them.</li>
-        <li><strong>Step 2:</strong> Tell them.</li>
-        <li><strong>Step 3:</strong> Tell them what you told them.</li>
-      </ul>
       <p>
-        In other words: introduce your main points, explain them, and then
-        review them briefly at the end.
+        When the presentation time comes, the team is stressed and frustrated because the task 
+        was never clearly defined.
       </p>
 
-      <h3>2.3 Build a Better Presentation</h3>
+      <h4>What this teaches (Chapter 3 connection)</h4>
       <ul>
-        <li>Keep it short and focused; people tune out after 15–20 minutes.</li>
-        <li>
-          Keep the audience engaged:
+        <li><strong>Think before you write:</strong> Know your purpose and message.</li>
+        <li><strong>Be specific:</strong> Include what, who, and when (task, person responsible, deadline).</li>
+        <li><strong>Use clear subject lines:</strong> Example – “Client Presentation – Final Steps for 10/15 Meeting”.</li>
+      </ul>
+
+      <h3>Scene 2 – Breakdown & Analysis</h3>
+      <p>
+        The team steps back and analyzes what went wrong:
+      </p>
+      <ul>
+        <li>The message was not specific or structured.</li>
+        <li>The manager assumed understanding instead of checking for clarity.</li>
+        <li>No one confirmed who was doing what.</li>
+      </ul>
+
+      <p>
+        This matches Chapter 3’s idea that <strong>communication is about clarity, tone, and understanding</strong>, 
+        not just sending a message. Planning and revising are part of professional communication.
+      </p>
+
+      <h3>Scene 3 – Effective Communication (Clear Email & Expectations)</h3>
+      <span class="scene-label">Better Way</span>
+      <p>
+        Now we see a better version of the same situation:
+      </p>
+      <ul>
+        <li>Yaretzi sends an email with a clear subject line: <em>“Client Presentation – Final Steps”</em>.</li>
+        <li>Tasks are specific: who does the visuals, who proofreads, when they’ll rehearse.</li>
+        <li>The tone is respectful and cooperative.</li>
+      </ul>
+
+      <p>
+        This reflects the Chapter 3 guidance to:
+      </p>
+      <ul>
+        <li>Organize your ideas before writing.</li>
+        <li>Use polite, professional language.</li>
+        <li>Make expectations and deadlines clear.</li>
+      </ul>
+
+      <h3>Scene 4 – Thinking & Word Choice</h3>
+      <p>
+        The team talks about thinking before, during, and after writing, and about choosing words carefully.
+        They also mention avoiding slang, filler words, or ALL CAPS in professional communication.
+      </p>
+
+      <h4>Key takeaways</h4>
+      <ul>
+        <li>Plan your message (purpose + audience).</li>
+        <li>Keep it simple and professional.</li>
+        <li>Reread and revise before hitting send.</li>
+      </ul>
+
+      <h3>Scene 5 – Speaking with Confidence</h3>
+      <p>
+        This scene focuses on presentations and speaking to others at work.
+        They highlight:
+      </p>
+      <ul>
+        <li>The importance of preparation.</li>
+        <li>Understanding your audience.</li>
+        <li>Using the speaking formula:
           <ul>
-            <li>Ask for a show of hands.</li>
-            <li>Ask rhetorical questions (“Have you ever…?”).</li>
-            <li>Repeat key points after you explain them.</li>
+            <li>Tell them what you’ll tell them.</li>
+            <li>Tell them.</li>
+            <li>Tell them what you told them.</li>
           </ul>
         </li>
-        <li>Don’t give them something long to read while you’re talking.</li>
-        <li>Use appropriate, good-taste humor when it fits.</li>
+        <li>Using good body language: eye contact, posture, and pausing.</li>
       </ul>
 
-      <h3>2.4 During Your Presentation</h3>
-      <ul>
-        <li>Dress one level more professional than your audience.</li>
-        <li>Introduce yourself or arrange to be introduced.</li>
-        <li>Don’t rush; take a breath before you begin.</li>
-        <li>Talk slowly enough that people can follow you. Pause often.</li>
-        <li>Speak loudly enough for the room, not just the front row.</li>
-        <li>Use your face, hands, and voice to show energy and emotion.</li>
-        <li>Drop filler words like “um” and “like” — just pause instead.</li>
-        <li>
-          Make eye contact with individuals rather than staring at your notes or
-          the screen.
-        </li>
-        <li>
-          Don’t read your whole speech word-for-word. Glance at notes instead.
-        </li>
-      </ul>
-
-      <h3>2.5 Scene 2 – “The Awkward Meeting”</h3>
       <p>
-        In our video, “Taylor” reads from a paper with no eye contact and
-        everyone zones out. Then, in the “better way,” Taylor looks up, speaks
-        naturally, and connects with the group.
-      </p>
-      <div class="tip">
-        <strong>Key lesson:</strong> People don’t just listen to your words;
-        they react to your eye contact, tone, and body language.
-      </div>
-    </section>
-
-    <!-- VISUALS -->
-    <section id="visuals">
-      <h2>3. Presenting Ideas Visually</h2>
-      <p>
-        Visual aids can clarify your message, emphasize key points, keep people
-        paying attention, and make you look more prepared — if you use them
-        correctly.
+        All of this connects directly to Chapter 3’s advice on <strong>preparing, organizing, and delivering</strong> an effective talk.
       </p>
 
-      <h3>3.1 Visuals Must Have a Purpose</h3>
-      <p>Use visuals to:</p>
+      <h3>Scene 6 – Visuals & Word Pictures</h3>
+      <p>
+        Here, visuals (slides, charts, images) are discussed as tools to support the message. 
+        The key ideas:
+      </p>
       <ul>
-        <li>Show trends or comparisons with charts and graphs.</li>
-        <li>
-          Explain abstract concepts (like “trust,” “teamwork,” or “freedom”).
-        </li>
-        <li>Show pictures of people, places, or products.</li>
-        <li>Walk people through a complicated process.</li>
+        <li>Visual aids should make your message clearer, not more confusing.</li>
+        <li>Don’t overload slides with tiny text and clutter.</li>
+        <li>Be ready to communicate even if technology fails.</li>
       </ul>
 
-      <h3>3.2 The “Visual Overload” Problem (Scene 3)</h3>
       <p>
-        In the video, “Chris” shows a slide packed with tiny text and random
-        clip art. No one can follow it.
+        This reflects Chapter 3’s section on <strong>presenting ideas and concepts visually</strong> and using 
+        visuals only when they serve a clear purpose.
       </p>
 
-      <div class="bad-example">
-        <strong>What went wrong:</strong>
-        <ul>
-          <li>Too much text on one slide.</li>
-          <li>Font is too small to read.</li>
-          <li>Too many distracting images and clutter.</li>
-        </ul>
-      </div>
-
-      <div class="good-example">
-        <strong>Better visual approach:</strong>
-        <ul>
-          <li>1 simple title.</li>
-          <li>3 main bullet points or a single clear chart/graph.</li>
-          <li>Plenty of empty space so the slide feels clean.</li>
-        </ul>
-      </div>
-
-      <h3>3.3 Visual “Do’s and Don’ts”</h3>
-      <h4>Do:</h4>
-      <ul>
-        <li>Use charts and graphs to explain data clearly.</li>
-        <li>Give handouts if there is a lot of information to remember.</li>
-        <li>
-          Arrive early, test your equipment, and have a backup plan if
-          something fails.
-        </li>
-        <li>Speak to your audience, not to the screen.</li>
-      </ul>
-
-      <h4>Don’t:</h4>
-      <ul>
-        <li>Talk while everyone is trying to read a long slide.</li>
-        <li>Dump an entire list on screen at once if you can reveal it slowly.</li>
-        <li>Leave the room dark for too long — people get sleepy.</li>
-        <li>Use a visual just to show off technology.</li>
-        <li>
-          Put a visual up long before you discuss it or leave it up after you’ve
-          moved on.
-        </li>
-        <li>Turn your back and talk to the slide instead of the group.</li>
-      </ul>
-    </section>
-
-    <!-- LISTENING -->
-    <section id="listening">
-      <h2>4. Listening: The Other Half of Communication</h2>
+      <h3>Conclusion – Why This Matters</h3>
       <p>
-        Good communication is not just talking — it’s listening. People decide
-        if they trust you based on how well you listen.
+        The video ends by reminding us that confident communication:
       </p>
-
-      <h3>4.1 Scene 4 – “The Listening Problem”</h3>
+      <ul>
+        <li>Builds trust.</li>
+        <li>Keeps projects on track.</li>
+        <li>Makes you stand out as a professional.</li>
+      </ul>
       <p>
-        In the video, “Jordan” cuts people off and pushes only their own idea.
-        In the “better way,” Jordan listens first and then builds on the other
-        person’s idea.
-      </p>
-
-      <h3>4.2 How to Listen with Confidence</h3>
-      <ul>
-        <li>Let the other person finish before you respond.</li>
-        <li>Show you’re listening by nodding and using short responses (“I see.”).</li>
-        <li>Ask clarifying questions instead of assuming.</li>
-        <li>Summarize what you heard: “So you’re saying that…”</li>
-        <li>Be open to combining ideas instead of “my way vs. your way.”</li>
-      </ul>
-
-      <div class="tip">
-        <strong>Listening rule:</strong> If people feel heard, they are more
-        likely to hear you.
-      </div>
-    </section>
-
-    <!-- WORD CHOICE -->
-    <section id="word-choice">
-      <h2>5. Choosing the Right Words</h2>
-      <p>Words are powerful tools. In business, we use several kinds of words:</p>
-
-      <h3>5.1 Types of Business Words</h3>
-      <ul>
-        <li>
-          <strong>Jargon:</strong> Job-specific terms (for example, “bull
-          market”). Helpful with insiders, confusing to others.
-        </li>
-        <li>
-          <strong>Technical words:</strong> Scientific or specialized terms used
-          accurately in that field.
-        </li>
-        <li>
-          <strong>Vogue words:</strong> Trendy phrases (like “24/7” instead of
-          “we never close”).
-        </li>
-        <li>
-          <strong>Euphemisms:</strong> Softer words used instead of harsh ones
-          (like “sanitary engineer” for “garbage collector”).
-        </li>
-        <li>
-          <strong>Acronyms:</strong> Words formed from initials (like “AWOL” or
-          “E.R.”).
-        </li>
-      </ul>
-
-      <h3>5.2 Words to Avoid at Work</h3>
-      <ul>
-        <li>
-          <strong>Slang:</strong> Very informal words that not everyone
-          understands the same way.
-        </li>
-        <li>
-          <strong>Filler expressions:</strong> “Like,” “you know,” “basically,”
-          when they don’t add meaning.
-        </li>
-        <li>
-          <strong>Vulgar or offensive language:</strong> Swearing and insults
-          damage your professional image.
-        </li>
-      </ul>
-
-      <div class="tip">
-        <strong>Simple rule:</strong> Use everyday, respectful language that
-        anyone in the room can understand.
-      </div>
-    </section>
-
-    <!-- PROBLEM SOLVING -->
-    <section id="problem-solving">
-      <h2>6. Two Ways to Solve Communication Problems</h2>
-      <p>
-        When communication breaks down, you can use both critical thinking and
-        creative thinking to fix it.
-      </p>
-
-      <h3>6.1 Critical Thinking</h3>
-      <p>Critical thinking is logical and step-by-step. You:</p>
-      <ul>
-        <li>Focus on the problem (“What exactly is going wrong?”).</li>
-        <li>Break it into parts.</li>
-        <li>Gather and assess information.</li>
-        <li>Consider possible solutions and pick the best one.</li>
-      </ul>
-
-      <h3>6.2 Creative Thinking</h3>
-      <p>Creative thinking is more intuitive and open-ended. You:</p>
-      <ul>
-        <li>Look at the problem from a different angle.</li>
-        <li>Stay open to surprising ideas and inspiration.</li>
-        <li>Brainstorm without judging ideas too quickly.</li>
-      </ul>
-
-      <p>
-        Both approaches are valuable. You’ll often get the best solution when
-        you use them together.
+        When you combine <strong>clear writing</strong>, <strong>confident speaking</strong>, and <strong>intentional visuals</strong>, 
+        you communicate like someone ready for leadership.
       </p>
     </section>
 
-    <!-- CHECKLISTS -->
-    <section id="checklists">
-      <h2>7. Quick Communication Checklists</h2>
-      <p>Use these as a fast pre-check before you send, speak, or present.</p>
+    <!-- Checklists -->
+    <section class="card" id="checklists">
+      <h2>3. Quick Communication Checklists</h2>
 
-      <div class="checklist">
-        <div class="checklist-card">
-          <strong>Before you send an email</strong>
-          <ul>
-            <li>Is the subject line clear and specific?</li>
-            <li>Did you include the key details (who, what, when)?</li>
-            <li>Is your tone polite and professional?</li>
-            <li>Did you spell-check and reread once?</li>
+      <div class="two-column">
+        <div>
+          <h3>3.1 Writing Checklist (Email, Memo, Message)</h3>
+          <ul class="checklist">
+            <li>Clear subject line that matches the content.</li>
+            <li>Opening sentence explains the purpose.</li>
+            <li>Short paragraphs and simple sentences.</li>
+            <li>Includes who, what, when, where, and how.</li>
+            <li>Polite tone (please, thank you, respectful language).</li>
+            <li>No slang, ALL CAPS, or unnecessary emojis.</li>
+            <li>Spell-check and proofread before sending.</li>
           </ul>
         </div>
 
-        <div class="checklist-card">
-          <strong>Before you speak in a meeting</strong>
-          <ul>
-            <li>Do you know your main point?</li>
-            <li>Do you know your audience’s level of knowledge?</li>
-            <li>Have you practiced at least once out loud?</li>
-            <li>Did you plan to look up and make eye contact?</li>
-          </ul>
-        </div>
-
-        <div class="checklist-card">
-          <strong>Before you share slides</strong>
-          <ul>
-            <li>Is there too much text on any slide?</li>
-            <li>Can people read the font from the back of the room?</li>
-            <li>Do the visuals clearly support your message?</li>
-            <li>Do you know when to change or hide each slide?</li>
+        <div>
+          <h3>3.2 Speaking Checklist (Meetings & Presentations)</h3>
+          <ul class="checklist">
+            <li>Know your main points (don’t try to memorize every word).</li>
+            <li>Use the formula: intro → main points → recap.</li>
+            <li>Talk slowly, pause, and avoid filler words (“um,” “like”).</li>
+            <li>Make eye contact with different people in the room.</li>
+            <li>Stand or sit upright; don’t fidget with notes or objects.</li>
+            <li>Use examples or short stories to make ideas real.</li>
+            <li>Finish with a clear conclusion or next step.</li>
           </ul>
         </div>
       </div>
+
+      <h3>3.3 Visuals Checklist (Slides, Charts, Handouts)</h3>
+      <ul class="checklist">
+        <li>Each visual has a clear purpose (not just “because it looks cool”).</li>
+        <li>Limited text – only key points on each slide.</li>
+        <li>Fonts are large enough for everyone to read.</li>
+        <li>Colors are easy to see (no neon on neon).</li>
+        <li>You face the audience, not the screen.</li>
+        <li>You don’t read the slide word-for-word.</li>
+        <li>You could still explain your message without the visuals if needed.</li>
+      </ul>
     </section>
 
-    <!-- VIDEO CONNECTION -->
-    <section id="video-connection">
-      <h2>8. How This Manual Connects to Our Training Video</h2>
-      <p>
-        Our video, <em>“Communicate with Confidence – The Right Way at Work,”</em>
-        uses short scenes to show the concepts from this chapter in action.
-      </p>
+    <!-- Reflection -->
+    <section class="card" id="reflection">
+      <h2>4. Reflection & Discussion Questions</h2>
+      <p>Use these questions for class discussion, small groups, or your own reflection:</p>
+      <ol>
+        <li>Think of a time when miscommunication caused a problem at work or school. What went wrong, and how could clearer writing or speaking have helped?</li>
+        <li>Which part of communication is hardest for you right now: writing, speaking, or using visuals? Why?</li>
+        <li>Look back at Scene 1. If you were the manager, how would you rewrite the original email and instructions?</li>
+        <li>How can you apply the “think before, while, and after you write” idea in your next real email?</li>
+        <li>What’s one change you can make this week to sound more confident when you speak?</li>
+      </ol>
+    </section>
 
+    <!-- Summary -->
+    <section class="card" id="summary">
+      <h2>5. Quick Summary of Chapter 3</h2>
       <ul>
-        <li>
-          <strong>Trailer:</strong> Shows “miscommunication, confusion, chaos”
-          to remind us why this topic matters.
-        </li>
-        <li>
-          <strong>Scene 1 – The Confusing Email:</strong> Connects to
-          <em>Communicating in Writing</em> and email best practices.
-        </li>
-        <li>
-          <strong>Scene 2 – The Awkward Meeting:</strong> Shows what happens
-          when you read from notes and avoid eye contact; connects to
-          <em>Speaking with Confidence</em>.
-        </li>
-        <li>
-          <strong>Scene 3 – The Visual Overload:</strong> Links directly to
-          <em>Presenting Ideas Visually</em> and the do’s and don’ts for slides.
-        </li>
-        <li>
-          <strong>Scene 4 – The Listening Problem:</strong> Emphasizes that
-          listening is part of communication, not separate from it.
-        </li>
-        <li>
-          <strong>Scene 5 – Wrap-Up:</strong> Lines like “Think before you
-          write,” “Speak clearly and confidently,” “Keep visuals simple,” and
-          “Listen before you respond” summarize the core points of this manual.
-        </li>
+        <li>Good communication is essential for success in business.</li>
+        <li>Strong writing comes from planning, clarity, and careful revision.</li>
+        <li>Your word choice and tone shape how people see you professionally.</li>
+        <li>Confident speaking is built on preparation, structure, and practice.</li>
+        <li>Visual aids should support your message, not replace it or distract from it.</li>
       </ul>
 
       <p>
-        Use this manual as a reference while you watch the video or scan the QR
-        code. The goal is that what we say in the video matches what you can
-        read here, so everything feels consistent and practical.
+        When you combine these skills, you don’t just “get your point across” — you show that you’re 
+        reliable, professional, and ready for more responsibility.
       </p>
     </section>
   </main>
 
-  <div class="footer-note">
-    Based on Book 3, Chapter 3: <em>Communicate with Confidence</em> from our
-    course materials. Prepared as a class training manual to support our
-    workplace communication video.
-  </div>
+  <footer>
+    <p>
+      This manual is a companion to the group training video and is intended for classroom use. 
+      Feel free to adapt, update, and expand it as needed for your team or future classes.
+    </p>
+  </footer>
 </body>
 </html>
